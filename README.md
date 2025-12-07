@@ -197,7 +197,7 @@ MIT License - Bu layihəni sərbəst istifadə edə bilərsiniz.
 
 <div align="center">
 
-**Hazırladı: PMO Demo Platform**
+**Hazırladı: Onur Bayramov**
 
 🏢 Layihə İdarəetmə Ofisi üçün Demo Tətbiqi
 
