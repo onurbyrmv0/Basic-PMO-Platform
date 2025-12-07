@@ -1,0 +1,300 @@
+{
+  "app": {
+    "name": "PMO Platform",
+    "title": "Layihə Ofisi İdarəetmə Sistemi",
+    "description": "Layihə idarəetmə ofisi üçün tam funksional platforma"
+  },
+  "nav": {
+    "dashboard": "İdarə Paneli",
+    "projects": "Layihələr",
+    "gantt": "Gantt Diaqramı",
+    "orgchart": "Təşkilati Struktur",
+    "calculator": "Kalkulyator",
+    "workflow": "İş Prosesi",
+    "settings": "Tənzimləmələr"
+  },
+  "common": {
+    "save": "Saxla",
+    "cancel": "Ləğv et",
+    "delete": "Sil",
+    "edit": "Redaktə et",
+    "add": "Əlavə et",
+    "search": "Axtar",
+    "filter": "Filtr",
+    "export": "İxrac et",
+    "import": "İdxal et",
+    "print": "Çap et",
+    "close": "Bağla",
+    "confirm": "Təsdiqlə",
+    "back": "Geri",
+    "next": "Növbəti",
+    "previous": "Əvvəlki",
+    "loading": "Yüklənir...",
+    "noData": "Məlumat yoxdur",
+    "success": "Uğurlu",
+    "error": "Xəta",
+    "warning": "Xəbərdarlıq",
+    "info": "Məlumat",
+    "yes": "Bəli",
+    "no": "Xeyr",
+    "all": "Hamısı",
+    "none": "Heç biri",
+    "actions": "Əməliyyatlar",
+    "status": "Status",
+    "date": "Tarix",
+    "name": "Ad",
+    "description": "Təsvir",
+    "priority": "Prioritet",
+    "progress": "İrəliləyiş",
+    "total": "Cəmi",
+    "view": "Bax",
+    "details": "Detallar"
+  },
+  "dashboard": {
+    "title": "İdarə Paneli",
+    "welcome": "Xoş gəldiniz!",
+    "overview": "Ümumi Baxış",
+    "totalProjects": "Ümumi Layihələr",
+    "activeProjects": "Aktiv Layihələr",
+    "completedProjects": "Tamamlanmış",
+    "delayedProjects": "Gecikmədə",
+    "totalBudget": "Ümumi Büdcə",
+    "spentBudget": "Xərclənmiş",
+    "remainingBudget": "Qalan",
+    "teamMembers": "Komanda Üzvləri",
+    "recentActivities": "Son Aktivliklər",
+    "upcomingDeadlines": "Yaxınlaşan Son Tarixlər",
+    "projectStatus": "Layihə Statusu",
+    "budgetOverview": "Büdcə İcmalı",
+    "quickActions": "Sürətli Əməliyyatlar",
+    "newProject": "Yeni Layihə",
+    "viewReports": "Hesabatlara Bax",
+    "manageTeam": "Komandanı İdarə Et"
+  },
+  "projects": {
+    "title": "Layihələr",
+    "newProject": "Yeni Layihə",
+    "editProject": "Layihəni Redaktə Et",
+    "deleteProject": "Layihəni Sil",
+    "projectName": "Layihə Adı",
+    "projectDescription": "Layihə Təsviri",
+    "startDate": "Başlama Tarixi",
+    "endDate": "Bitmə Tarixi",
+    "manager": "Menecer",
+    "team": "Komanda",
+    "budget": "Büdcə",
+    "status": {
+      "planning": "Planlaşdırma",
+      "inProgress": "Davam edir",
+      "onHold": "Gözləmədə",
+      "completed": "Tamamlandı",
+      "cancelled": "Ləğv edildi"
+    },
+    "priority": {
+      "low": "Aşağı",
+      "medium": "Orta",
+      "high": "Yüksək",
+      "critical": "Kritik"
+    },
+    "views": {
+      "list": "Siyahı",
+      "kanban": "Kanban",
+      "grid": "Şəbəkə"
+    },
+    "filters": {
+      "all": "Bütün Layihələr",
+      "active": "Aktiv",
+      "completed": "Tamamlanmış",
+      "delayed": "Gecikmədə"
+    },
+    "deleteConfirm": "Bu layihəni silmək istədiyinizə əminsiniz?",
+    "noProjects": "Heç bir layihə tapılmadı"
+  },
+  "gantt": {
+    "title": "Gantt Diaqramı",
+    "newTask": "Yeni Tapşırıq",
+    "editTask": "Tapşırığı Redaktə Et",
+    "deleteTask": "Tapşırığı Sil",
+    "taskName": "Tapşırıq Adı",
+    "startDate": "Başlama",
+    "endDate": "Bitmə",
+    "duration": "Müddət",
+    "progress": "İrəliləyiş",
+    "dependencies": "Asılılıqlar",
+    "milestone": "Əsas Mərhələ",
+    "assignee": "Məsul Şəxs",
+    "views": {
+      "day": "Gün",
+      "week": "Həftə",
+      "month": "Ay",
+      "year": "İl"
+    },
+    "today": "Bu gün",
+    "zoomIn": "Böyüt",
+    "zoomOut": "Kiçilt",
+    "criticalPath": "Kritik Yol",
+    "showDependencies": "Asılılıqları Göstər"
+  },
+  "orgchart": {
+    "title": "Təşkilati Struktur",
+    "pmoDirector": "PMO Direktoru",
+    "projectManager": "Layihə Meneceri",
+    "teamLead": "Komanda Lideri",
+    "developer": "Developer",
+    "analyst": "Analitik",
+    "designer": "Dizayner",
+    "tester": "Tester",
+    "addEmployee": "İşçi Əlavə Et",
+    "editEmployee": "İşçini Redaktə Et",
+    "employeeName": "İşçi Adı",
+    "position": "Vəzifə",
+    "department": "Şöbə",
+    "email": "E-poçt",
+    "phone": "Telefon",
+    "responsibilities": "Məsuliyyətlər",
+    "zoomIn": "Böyüt",
+    "zoomOut": "Kiçilt",
+    "fitToScreen": "Ekrana Sığdır",
+    "export": "Strukturu İxrac Et"
+  },
+  "calculator": {
+    "title": "Layihə Kalkulyatoru",
+    "budget": {
+      "title": "Büdcə Kalkulyatoru",
+      "laborCost": "İşçi Qüvvəsi Xərcləri",
+      "materialCost": "Material Xərcləri",
+      "equipmentCost": "Avadanlıq Xərcləri",
+      "overheadCost": "Əlavə Xərclər",
+      "contingency": "Ehtiyat Fond",
+      "totalBudget": "Ümumi Büdcə"
+    },
+    "resource": {
+      "title": "Resurs Kalkulyatoru",
+      "teamSize": "Komanda Ölçüsü",
+      "hourlyRate": "Saatlıq Tarif",
+      "hoursPerDay": "Gündəlik İş Saatı",
+      "workDays": "İş Günləri",
+      "totalHours": "Ümumi Saatlar",
+      "totalCost": "Ümumi Xərc"
+    },
+    "roi": {
+      "title": "ROI Kalkulyatoru",
+      "investment": "İnvestisiya",
+      "expectedReturn": "Gözlənilən Gəlir",
+      "roi": "ROI",
+      "paybackPeriod": "Geri Ödəmə Müddəti",
+      "npv": "Xalis İndiki Dəyər (NPV)",
+      "months": "ay"
+    },
+    "calculate": "Hesabla",
+    "reset": "Sıfırla",
+    "generateReport": "Hesabat Yarat",
+    "comparison": "Ssenari Müqayisəsi",
+    "scenario": "Ssenari"
+  },
+  "workflow": {
+    "title": "Layihə İş Prosesi",
+    "stages": {
+      "initiation": {
+        "name": "Başlanğıc",
+        "description": "Layihənin konsepsiyası və əsaslandırılması",
+        "tasks": [
+          "Layihə ideyasının müəyyənləşdirilməsi",
+          "Biznes tələblərinin təhlili",
+          "İlkin texniki-iqtisadi əsaslandırma",
+          "Maraqlı tərəflərin müəyyənləşdirilməsi",
+          "Layihə nizamnaməsinin hazırlanması"
+        ]
+      },
+      "planning": {
+        "name": "Planlaşdırma",
+        "description": "Layihənin ətraflı planlaşdırılması",
+        "tasks": [
+          "Əhatə dairəsinin müəyyənləşdirilməsi",
+          "İş bölgüsü strukturunun yaradılması",
+          "Zaman cədvəlinin hazırlanması",
+          "Büdcənin planlaşdırılması",
+          "Risklərin müəyyənləşdirilməsi",
+          "Kommunikasiya planının hazırlanması"
+        ]
+      },
+      "execution": {
+        "name": "İcra",
+        "description": "Layihə planının həyata keçirilməsi",
+        "tasks": [
+          "Komandanın formalaşdırılması",
+          "Resursların ayrılması",
+          "İşlərin yerinə yetirilməsi",
+          "Keyfiyyət təminatı",
+          "Maraqlı tərəflərlə əlaqə"
+        ]
+      },
+      "monitoring": {
+        "name": "Monitorinq və Nəzarət",
+        "description": "Layihənin izlənilməsi və düzəlişlər",
+        "tasks": [
+          "İrəliləyişin izlənilməsi",
+          "Dəyişikliklərin idarə edilməsi",
+          "Risklərin monitorinqi",
+          "Performansın qiymətləndirilməsi",
+          "Hesabatların hazırlanması"
+        ]
+      },
+      "closing": {
+        "name": "Bağlanış",
+        "description": "Layihənin tamamlanması və təhvil-təslim",
+        "tasks": [
+          "Nəticələrin təhvil verilməsi",
+          "Sənədləşmənin tamamlanması",
+          "Təcrübənin sənədləşdirilməsi",
+          "Resursların azad edilməsi",
+          "Layihənin rəsmi bağlanması"
+        ]
+      }
+    },
+    "currentStage": "Cari Mərhələ",
+    "completedTasks": "Tamamlanmış Tapşırıqlar",
+    "pendingTasks": "Gözləyən Tapşırıqlar"
+  },
+  "settings": {
+    "title": "Tənzimləmələr",
+    "general": "Ümumi",
+    "appearance": "Görünüş",
+    "export": "İxrac",
+    "language": "Dil",
+    "about": "Haqqında",
+    "lightMode": "İşıqlı Rejim",
+    "darkMode": "Qaranlıq Rejim"
+  },
+  "export": {
+    "title": "İxrac",
+    "pdf": "PDF olaraq İxrac Et",
+    "excel": "Excel olaraq İxrac Et",
+    "png": "PNG olaraq İxrac Et",
+    "print": "Çap Et",
+    "success": "Fayl uğurla ixrac edildi",
+    "error": "İxrac zamanı xəta baş verdi"
+  },
+  "notifications": {
+    "projectCreated": "Layihə uğurla yaradıldı",
+    "projectUpdated": "Layihə yeniləndi",
+    "projectDeleted": "Layihə silindi",
+    "taskCreated": "Tapşırıq yaradıldı",
+    "taskUpdated": "Tapşırıq yeniləndi",
+    "taskDeleted": "Tapşırıq silindi",
+    "settingsSaved": "Tənzimləmələr saxlanıldı",
+    "dataExported": "Məlumatlar ixrac edildi",
+    "dataImported": "Məlumatlar idxal edildi",
+    "dataReset": "Məlumatlar sıfırlandı",
+    "errorOccurred": "Xəta baş verdi"
+  },
+  "validation": {
+    "required": "Bu sahə məcburidir",
+    "minLength": "Minimum {min} simvol olmalıdır",
+    "maxLength": "Maximum {max} simvol olmalıdır",
+    "email": "Düzgün e-poçt ünvanı daxil edin",
+    "number": "Rəqəm daxil edin",
+    "date": "Düzgün tarix daxil edin",
+    "dateRange": "Bitmə tarixi başlama tarixindən sonra olmalıdır"
+  }
+}

@@ -1,0 +1,493 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  * {
+    @apply border-gray-200 dark:border-gray-700;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* Cards */
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 transition-all duration-300;
+  }
+
+  .card:hover {
+    @apply shadow-md;
+  }
+
+  .card-header {
+    @apply text-lg font-semibold text-gray-900 dark:text-white mb-4;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+
+  .btn-secondary {
+    @apply btn bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 focus:ring-gray-500;
+  }
+
+  .btn-success {
+    @apply btn bg-success-500 text-white hover:bg-success-600 focus:ring-success-500;
+  }
+
+  .btn-danger {
+    @apply btn bg-danger-500 text-white hover:bg-danger-600 focus:ring-danger-500;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
+  }
+
+  .btn-icon {
+    @apply p-2 rounded-lg;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
+  }
+
+  .input-label {
+    @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1;
+  }
+
+  .input-error {
+    @apply border-danger-500 focus:ring-danger-500;
+  }
+
+  .input-error-message {
+    @apply text-sm text-danger-500 mt-1;
+  }
+
+  /* Select */
+  .select {
+    @apply input appearance-none bg-no-repeat cursor-pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply badge bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-300;
+  }
+
+  .badge-success {
+    @apply badge bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300;
+  }
+
+  .badge-warning {
+    @apply badge bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300;
+  }
+
+  .badge-danger {
+    @apply badge bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300;
+  }
+
+  .badge-gray {
+    @apply badge bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300;
+  }
+
+  /* KPI Cards */
+  .kpi-card {
+    @apply card relative overflow-hidden;
+  }
+
+  .kpi-card::before {
+    content: '';
+    @apply absolute top-0 left-0 w-1 h-full bg-primary-500;
+  }
+
+  .kpi-value {
+    @apply text-3xl font-bold text-gray-900 dark:text-white;
+  }
+
+  .kpi-label {
+    @apply text-sm text-gray-500 dark:text-gray-400 mt-1;
+  }
+
+  .kpi-change {
+    @apply text-sm font-medium mt-2;
+  }
+
+  .kpi-change-up {
+    @apply text-success-500;
+  }
+
+  .kpi-change-down {
+    @apply text-danger-500;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    @apply fixed left-0 top-0 h-full w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 z-40 transition-transform duration-300;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg mx-2 transition-colors duration-200;
+  }
+
+  .sidebar-link.active {
+    @apply bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 font-medium;
+  }
+
+  .sidebar-link-icon {
+    @apply w-5 h-5;
+  }
+
+  /* Tables */
+  .table-container {
+    @apply overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700;
+  }
+
+  .table {
+    @apply w-full text-sm text-left;
+  }
+
+  .table thead {
+    @apply bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-300 uppercase text-xs;
+  }
+
+  .table th {
+    @apply px-6 py-3 font-medium tracking-wider;
+  }
+
+  .table tbody tr {
+    @apply bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors;
+  }
+
+  .table td {
+    @apply px-6 py-4;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4;
+  }
+
+  .modal {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto;
+  }
+
+  .modal-header {
+    @apply flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700;
+  }
+
+  .modal-title {
+    @apply text-xl font-semibold text-gray-900 dark:text-white;
+  }
+
+  .modal-body {
+    @apply p-6;
+  }
+
+  .modal-footer {
+    @apply flex items-center justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700;
+  }
+
+  /* Progress Bar */
+  .progress {
+    @apply w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden;
+  }
+
+  .progress-bar {
+    @apply h-full rounded-full transition-all duration-500 ease-out;
+  }
+
+  .progress-primary {
+    @apply bg-primary-500;
+  }
+
+  .progress-success {
+    @apply bg-success-500;
+  }
+
+  .progress-warning {
+    @apply bg-warning-500;
+  }
+
+  .progress-danger {
+    @apply bg-danger-500;
+  }
+
+  /* Dropdown */
+  .dropdown {
+    @apply relative inline-block;
+  }
+
+  .dropdown-menu {
+    @apply absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50;
+  }
+
+  .dropdown-item {
+    @apply block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer;
+  }
+
+  /* Tooltips */
+  .tooltip {
+    @apply relative inline-block;
+  }
+
+  .tooltip-text {
+    @apply invisible absolute z-10 px-3 py-2 text-sm text-white bg-gray-900 rounded-lg -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap opacity-0 transition-all duration-200;
+  }
+
+  .tooltip:hover .tooltip-text {
+    @apply visible opacity-100;
+  }
+
+  /* Tabs */
+  .tabs {
+    @apply flex border-b border-gray-200 dark:border-gray-700;
+  }
+
+  .tab {
+    @apply px-4 py-2 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 border-b-2 border-transparent -mb-px cursor-pointer transition-colors;
+  }
+
+  .tab.active {
+    @apply text-primary-600 dark:text-primary-400 border-primary-600 dark:border-primary-400;
+  }
+
+  /* Toast Notifications */
+  .toast {
+    @apply fixed bottom-4 right-4 z-50 flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg animate-slide-in;
+  }
+
+  .toast-success {
+    @apply bg-success-500 text-white;
+  }
+
+  .toast-error {
+    @apply bg-danger-500 text-white;
+  }
+
+  .toast-warning {
+    @apply bg-warning-500 text-white;
+  }
+
+  .toast-info {
+    @apply bg-primary-500 text-white;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-400;
+  }
+
+  .glass {
+    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-500;
+}
+
+/* Chart.js Dark Mode */
+.dark .chartjs-tooltip {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+}
+
+/* Gantt Chart Styles */
+.gantt-container {
+  @apply overflow-x-auto bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700;
+}
+
+.gantt-header {
+  @apply flex border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700;
+}
+
+.gantt-row {
+  @apply flex border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors;
+}
+
+.gantt-task-bar {
+  @apply absolute h-8 rounded-md bg-primary-500 cursor-pointer hover:bg-primary-600 transition-colors flex items-center justify-center text-white text-xs font-medium;
+}
+
+/* Org Chart Styles */
+.org-node {
+  @apply bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl p-4 min-w-48 text-center cursor-pointer transition-all duration-200 hover:shadow-lg hover:border-primary-500;
+}
+
+.org-node.active {
+  @apply border-primary-500 ring-2 ring-primary-200 dark:ring-primary-800;
+}
+
+.org-connector {
+  @apply stroke-gray-300 dark:stroke-gray-600 stroke-2;
+}
+
+/* Workflow Styles */
+.workflow-step {
+  @apply relative flex flex-col items-center;
+}
+
+.workflow-circle {
+  @apply w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl transition-all duration-300;
+}
+
+.workflow-circle.active {
+  @apply ring-4 ring-offset-2 dark:ring-offset-gray-900 scale-110;
+}
+
+.workflow-circle.completed {
+  @apply bg-success-500 ring-2 ring-success-500/30;
+}
+
+.workflow-circle.current {
+  @apply bg-primary-500 ring-2 ring-primary-500/30 animate-pulse-slow;
+}
+
+.workflow-circle.pending {
+  @apply bg-gray-400 dark:bg-gray-600;
+}
+
+.workflow-line {
+  @apply h-1 flex-1 mx-2 rounded-full transition-all duration-500;
+}
+
+.workflow-line.completed {
+  @apply bg-success-500;
+}
+
+.workflow-line.pending {
+  @apply bg-gray-300 dark:bg-gray-600;
+}
+
+/* Kanban Board */
+.kanban-board {
+  @apply flex gap-4 overflow-x-auto pb-4;
+}
+
+.kanban-column {
+  @apply flex-shrink-0 w-80 bg-gray-100 dark:bg-gray-800 rounded-xl p-4;
+}
+
+.kanban-column-header {
+  @apply flex items-center justify-between mb-4;
+}
+
+.kanban-column-title {
+  @apply font-semibold text-gray-700 dark:text-gray-200;
+}
+
+.kanban-column-count {
+  @apply w-6 h-6 rounded-full bg-gray-300 dark:bg-gray-600 text-xs flex items-center justify-center font-medium;
+}
+
+.kanban-card {
+  @apply bg-white dark:bg-gray-700 rounded-lg p-4 mb-3 cursor-grab shadow-sm hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-600;
+}
+
+.kanban-card:active {
+  @apply cursor-grabbing shadow-lg;
+}
+
+/* Loading Skeleton */
+.skeleton {
+  @apply bg-gray-200 dark:bg-gray-700 rounded animate-pulse;
+}
+
+.skeleton-text {
+  @apply h-4 w-full;
+}
+
+.skeleton-title {
+  @apply h-6 w-3/4;
+}
+
+.skeleton-circle {
+  @apply rounded-full;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    @apply bg-white text-black;
+  }
+  
+  .card {
+    @apply shadow-none border;
+  }
+}
