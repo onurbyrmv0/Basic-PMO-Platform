@@ -22,6 +22,13 @@ export const useProjectStore = defineStore("projects", () => {
       manager: "Əli Həsənov",
       team: ["Nigar Məmmədova", "Rəşad Quliyev", "Leyla Əliyeva"],
       color: "#3b82f6",
+      workflowProgress: {
+        initiation: [],
+        planning: [],
+        execution: [],
+        monitoring: [],
+        closing: [],
+      },
     },
     {
       id: 2,
@@ -39,6 +46,13 @@ export const useProjectStore = defineStore("projects", () => {
       manager: "Səbinə Rəhimova",
       team: ["Tural Babayev", "Günel Hüseynova"],
       color: "#8b5cf6",
+      workflowProgress: {
+        initiation: [],
+        planning: [],
+        execution: [],
+        monitoring: [],
+        closing: [],
+      },
     },
     {
       id: 3,
@@ -56,6 +70,13 @@ export const useProjectStore = defineStore("projects", () => {
       manager: "Kamran Əsgərov",
       team: ["Aynur Kazımova"],
       color: "#22c55e",
+      workflowProgress: {
+        initiation: [],
+        planning: [],
+        execution: [],
+        monitoring: [],
+        closing: [],
+      },
     },
     {
       id: 4,
@@ -73,6 +94,13 @@ export const useProjectStore = defineStore("projects", () => {
       manager: "Vüsal Nəsirov",
       team: ["Orxan Məmmədov", "Fidan Əliyeva"],
       color: "#ef4444",
+      workflowProgress: {
+        initiation: [],
+        planning: [],
+        execution: [],
+        monitoring: [],
+        closing: [],
+      },
     },
     {
       id: 5,
@@ -90,6 +118,13 @@ export const useProjectStore = defineStore("projects", () => {
       manager: "Əli Həsənov",
       team: ["Rəşad Quliyev", "Tural Babayev", "Orxan Məmmədov"],
       color: "#f59e0b",
+      workflowProgress: {
+        initiation: [],
+        planning: [],
+        execution: [],
+        monitoring: [],
+        closing: [],
+      },
     },
   ]);
 

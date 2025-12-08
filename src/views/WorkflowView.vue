@@ -1,4 +1,8 @@
 <script setup>
+import { useProjectStore } from '../stores/projectStore'
+const projectStore = useProjectStore()
+const selectedProjectId = ref(projectStore.projects[0]?.id || null)
+const selectedProject = computed(() => projectStore.projects.find(p => p.id === selectedProjectId.value))
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import {
@@ -14,13 +18,22 @@ import {
 const { t, locale } = useI18n()
 
 const currentStage = ref(0)
-const completedTasks = ref({
-  initiation: [0, 1],
-  planning: [0, 1, 2],
-  execution: [],
-  monitoring: [],
-  closing: []
+const completedTasks = computed({
+  get() {
+    return selectedProject.value?.workflowProgress || {
+      initiation: [], planning: [], execution: [], monitoring: [], closing: []
+    }
+  },
+  set(val) {
+    if (selectedProject.value) {
+      selectedProject.value.workflowProgress = val
+      projectStore.saveToLocalStorage()
+    }
+  }
 })
+function selectProject(id) {
+  selectedProjectId.value = id
+}
 
 const stages = computed(() => [
   {
@@ -94,16 +107,15 @@ function goToStage(index) {
 }
 
 function toggleTask(stageId, taskIndex) {
-  if (!completedTasks.value[stageId]) {
-    completedTasks.value[stageId] = []
-  }
-  
-  const index = completedTasks.value[stageId].indexOf(taskIndex)
-  if (index > -1) {
-    completedTasks.value[stageId].splice(index, 1)
+  const newProgress = { ...completedTasks.value }
+  if (!newProgress[stageId]) newProgress[stageId] = []
+  const idx = newProgress[stageId].indexOf(taskIndex)
+  if (idx > -1) {
+    newProgress[stageId] = newProgress[stageId].filter(i => i !== taskIndex)
   } else {
-    completedTasks.value[stageId].push(taskIndex)
+    newProgress[stageId] = [...newProgress[stageId], taskIndex]
   }
+  completedTasks.value = newProgress
 }
 
 function isTaskCompleted(stageId, taskIndex) {
@@ -120,6 +132,22 @@ function getStageProgress(stageId) {
 
 <template>
   <div class="space-y-6">
+    <!-- Project Quick Access & Selection -->
+    <div class="card mb-6">
+      <h3 class="card-header flex items-center gap-2">
+        <span class="font-bold">{{ locale === 'az' ? 'Layihə seçin' : 'Select Project' }}</span>
+      </h3>
+      <div v-if="projectStore.projects.length" class="flex flex-wrap gap-2 mt-4">
+        <button v-for="project in projectStore.projects" :key="project.id"
+          class="px-4 py-2 rounded-lg border transition font-medium"
+          :class="selectedProjectId === project.id ? 'bg-primary-600 text-white border-primary-600' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-700 hover:border-primary-500'"
+          @click="selectProject(project.id)">
+          <span class="w-2 h-2 rounded-full inline-block mr-2" :style="{ background: project.color }"></span>
+          {{ locale === 'az' ? project.name : project.nameEn }}
+        </button>
+      </div>
+      <div v-else class="text-gray-400 text-center py-8">{{ t('projects.noProjects') }}</div>
+    </div>
     <!-- Page Header -->
     <div>
       <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
