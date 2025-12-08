@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useEmployeeStore } from '../stores/employeeStore'
+import { useExport } from '../composables/useExport'
 import OrgChartTree from '../components/orgchart/OrgChartTree.vue'
 import EmployeeModal from '../components/orgchart/EmployeeModal.vue'
 import {
@@ -14,9 +15,11 @@ import {
 
 const { t } = useI18n()
 const employeeStore = useEmployeeStore()
+const { exportOrgChartToPDF } = useExport()
 
 const showModal = ref(false)
 const editingEmployee = ref(null)
+const orgChartContainer = ref(null)
 
 onMounted(() => {
   employeeStore.loadFromLocalStorage()
@@ -54,8 +57,9 @@ function handleDelete(id) {
 }
 
 function exportChart() {
-  // Export org chart as PNG
-  console.log('Exporting org chart...')
+  const el = orgChartContainer.value
+  if (!el) return
+  exportOrgChartToPDF(el)
 }
 </script>
 
@@ -125,7 +129,7 @@ function exportChart() {
     </div>
 
     <!-- Org Chart -->
-    <div class="card overflow-x-auto">
+    <div class="card overflow-x-auto" ref="orgChartContainer">
       <div 
         class="min-w-max transition-transform duration-200 origin-top-left p-8"
         :style="{ transform: `scale(${employeeStore.zoomLevel})` }"

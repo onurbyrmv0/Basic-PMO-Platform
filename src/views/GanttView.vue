@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useTaskStore } from '../stores/taskStore'
 import { useProjectStore } from '../stores/projectStore'
+import { useExport } from '../composables/useExport'
 import GanttChart from '../components/gantt/GanttChart.vue'
 import TaskModal from '../components/gantt/TaskModal.vue'
 import {
@@ -17,9 +18,11 @@ import {
 const { t, locale } = useI18n()
 const taskStore = useTaskStore()
 const projectStore = useProjectStore()
+const { exportGanttToPNG } = useExport()
 
 const showModal = ref(false)
 const editingTask = ref(null)
+const ganttContainer = ref(null)
 
 onMounted(() => {
   taskStore.loadFromLocalStorage()
@@ -71,8 +74,9 @@ function goToToday() {
 }
 
 function exportGantt() {
-  // Export functionality
-  console.log('Exporting Gantt chart...')
+  const el = ganttContainer.value
+  if (!el) return
+  exportGanttToPNG(el)
 }
 </script>
 
@@ -174,13 +178,15 @@ function exportGantt() {
     </div>
 
     <!-- Gantt Chart -->
-    <GanttChart
-      :tasks="taskStore.filteredTasks"
-      :view-scale="taskStore.viewScale"
-      :show-dependencies="taskStore.showDependencies"
-      @task-click="openEditModal"
-      @task-update="(id, updates) => taskStore.updateTask(id, updates)"
-    />
+    <div ref="ganttContainer">
+      <GanttChart
+        :tasks="taskStore.filteredTasks"
+        :view-scale="taskStore.viewScale"
+        :show-dependencies="taskStore.showDependencies"
+        @task-click="openEditModal"
+        @task-update="(id, updates) => taskStore.updateTask(id, updates)"
+      />
+    </div>
 
     <!-- Task Modal -->
     <TaskModal

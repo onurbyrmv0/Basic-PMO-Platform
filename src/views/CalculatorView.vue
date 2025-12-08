@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useCalculatorStore } from '../stores/calculatorStore'
+import { useExport } from '../composables/useExport'
 import BudgetCalculator from '../components/calculator/BudgetCalculator.vue'
 import ResourceCalculator from '../components/calculator/ResourceCalculator.vue'
 import RoiCalculator from '../components/calculator/RoiCalculator.vue'
@@ -15,6 +16,7 @@ import {
 
 const { t } = useI18n()
 const calculatorStore = useCalculatorStore()
+const { exportCalculatorToExcel } = useExport()
 
 onMounted(() => {
   calculatorStore.loadFromLocalStorage()
@@ -27,8 +29,15 @@ const tabs = [
 ]
 
 function exportReport() {
-  console.log('Exporting report...')
-  // Would generate PDF report
+  const type = calculatorStore.activeTab
+  const dataMap = {
+    budget: calculatorStore.budgetCalculations,
+    resource: calculatorStore.resourceCalculations,
+    roi: calculatorStore.roiCalculations
+  }
+  const data = dataMap[type]
+  if (!data) return
+  exportCalculatorToExcel(data, type)
 }
 </script>
 

@@ -10,4 +10,18 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  // Silence known false-positive from vue-i18n bundling currentInstance
+  build: {
+    rollupOptions: {
+      onwarn(warning, warn) {
+        if (
+          warning.code === "IMPORT_IS_UNDEFINED" &&
+          warning.id?.includes("vue-i18n")
+        ) {
+          return;
+        }
+        warn(warning);
+      },
+    },
+  },
 });

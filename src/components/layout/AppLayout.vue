@@ -1,10 +1,17 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted } from 'vue'
 import { useAppStore } from '../../stores/appStore'
 import AppSidebar from './AppSidebar.vue'
 import AppHeader from './AppHeader.vue'
 
 const appStore = useAppStore()
+
+// Close sidebar by default on small screens for better mobile UX
+onMounted(() => {
+  if (window.innerWidth < 1024) {
+    appStore.sidebarOpen = false
+  }
+})
 </script>
 
 <template>

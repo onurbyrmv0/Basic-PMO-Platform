@@ -2,31 +2,24 @@
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useAppStore } from '../../stores/appStore'
-import { setLocale, availableLocales, getLocale } from '../../i18n'
+import { availableLocales } from '../../i18n'
 import {
   Bars3Icon,
   MoonIcon,
   SunIcon,
   MagnifyingGlassIcon,
-  BellIcon,
-  LanguageIcon
+  BellIcon
 } from '@heroicons/vue/24/outline'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const appStore = useAppStore()
 
-const showLangDropdown = ref(false)
 const showNotifications = ref(false)
 const searchQuery = ref('')
 
 const currentLocale = computed(() => {
-  return availableLocales.find(l => l.code === getLocale()) || availableLocales[0]
+  return availableLocales.find(l => l.code === locale.value) || availableLocales[0]
 })
-
-function changeLanguage(code) {
-  setLocale(code)
-  showLangDropdown.value = false
-}
 
 function toggleSearch() {
   // Could open a search modal
@@ -34,7 +27,10 @@ function toggleSearch() {
 </script>
 
 <template>
-  <header class="fixed top-0 right-0 left-0 lg:left-64 h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 z-20 transition-all duration-300">
+  <header
+    class="fixed top-0 right-0 left-0 h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 z-20 transition-all duration-300"
+    :class="appStore.sidebarOpen ? 'lg:left-64' : 'lg:left-0'"
+  >
     <div class="flex items-center justify-between h-full px-4">
       <!-- Left side -->
       <div class="flex items-center gap-4">
@@ -68,35 +64,10 @@ function toggleSearch() {
           <MagnifyingGlassIcon class="w-5 h-5 text-gray-600 dark:text-gray-300" />
         </button>
 
-        <!-- Language Switcher -->
-        <div class="relative">
-          <button 
-            class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-            @click="showLangDropdown = !showLangDropdown"
-          >
-            <span class="text-lg">{{ currentLocale.flag }}</span>
-            <span class="hidden sm:inline text-sm font-medium text-gray-700 dark:text-gray-200">
-              {{ currentLocale.code.toUpperCase() }}
-            </span>
-          </button>
-          
-          <!-- Dropdown -->
-          <div 
-            v-if="showLangDropdown"
-            class="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50"
-          >
-            <button
-              v-for="locale in availableLocales"
-              :key="locale.code"
-              class="w-full flex items-center gap-3 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-              :class="{ 'bg-primary-50 dark:bg-primary-900/20': locale.code === currentLocale.code }"
-              @click="changeLanguage(locale.code)"
-            >
-              <span class="text-lg">{{ locale.flag }}</span>
-              <span class="text-sm text-gray-700 dark:text-gray-200">{{ locale.name }}</span>
-            </button>
-          </div>
-        </div>
+        <!-- Language Display -->
+        <span class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200">
+          <span class="text-base font-semibold">{{ currentLocale.code.toUpperCase() }}</span>
+        </span>
 
         <!-- Theme Toggle -->
         <button 
@@ -138,8 +109,8 @@ function toggleSearch() {
 
   <!-- Click outside to close dropdowns -->
   <div 
-    v-if="showLangDropdown || showNotifications"
+    v-if="showNotifications"
     class="fixed inset-0 z-40"
-    @click="showLangDropdown = false; showNotifications = false"
+    @click="showNotifications = false"
   />
 </template>

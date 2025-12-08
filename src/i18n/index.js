@@ -14,6 +14,9 @@ export const i18n = createI18n({
   },
 });
 
+// Ensure document language attribute is in sync on load
+document.documentElement.setAttribute("lang", savedLocale);
+
 export function setLocale(locale) {
   i18n.global.locale.value = locale;
   localStorage.setItem("locale", locale);

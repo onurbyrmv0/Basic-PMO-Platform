@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useAppStore } from '@/stores/appStore'
+import { setLocale } from '@/i18n'
 import {
   SunIcon,
   MoonIcon,
@@ -55,7 +56,9 @@ const shortcuts = computed(() => [
 const selectedExportFormat = ref('pdf')
 
 function setLanguage(code) {
-  appStore.setLocale(code)
+  // Update both local composer and global locale, persist to storage
+  locale.value = code
+  setLocale(code)
 }
 
 function setTheme(themeId) {

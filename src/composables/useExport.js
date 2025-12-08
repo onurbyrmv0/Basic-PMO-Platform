@@ -1,11 +1,41 @@
-import { jsPDF } from "jspdf";
-import html2canvas from "html2canvas";
-import * as XLSX from "xlsx";
-import { saveAs } from "file-saver";
 import { useI18n } from "vue-i18n";
 
 export function useExport() {
   const { t, locale } = useI18n();
+
+  // Lazy loaders to keep initial bundle small and avoid large shared chunks
+  let jsPdfModule;
+  let html2canvasModule;
+  let xlsxModule;
+  let saveAsFn;
+
+  async function getJsPDF() {
+    if (!jsPdfModule) {
+      jsPdfModule = (await import("jspdf")).jsPDF;
+    }
+    return jsPdfModule;
+  }
+
+  async function getHtml2Canvas() {
+    if (!html2canvasModule) {
+      html2canvasModule = (await import("html2canvas")).default;
+    }
+    return html2canvasModule;
+  }
+
+  async function getXLSX() {
+    if (!xlsxModule) {
+      xlsxModule = await import("xlsx");
+    }
+    return xlsxModule;
+  }
+
+  async function getSaveAs() {
+    if (!saveAsFn) {
+      saveAsFn = (await import("file-saver")).saveAs;
+    }
+    return saveAsFn;
+  }
 
   /**
    * Export element to PDF
@@ -20,6 +50,9 @@ export function useExport() {
       if (!el) {
         throw new Error("Element not found");
       }
+
+      const html2canvas = await getHtml2Canvas();
+      const jsPDF = await getJsPDF();
 
       const canvas = await html2canvas(el, {
         scale: 2,
@@ -51,8 +84,13 @@ export function useExport() {
    * @param {string} filename - Output filename (without extension)
    * @param {string} sheetName - Excel sheet name
    */
-  function exportToExcel(data, filename = "export", sheetName = "Sheet1") {
+  async function exportToExcel(
+    data,
+    filename = "export",
+    sheetName = "Sheet1"
+  ) {
     try {
+      const XLSX = await getXLSX();
       const worksheet = XLSX.utils.json_to_sheet(data);
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
@@ -66,6 +104,7 @@ export function useExport() {
         type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       });
 
+      const saveAs = await getSaveAs();
       saveAs(blob, `${filename}.xlsx`);
 
       return { success: true, message: t("export.success") };
@@ -88,6 +127,9 @@ export function useExport() {
       if (!el) {
         throw new Error("Element not found");
       }
+
+      const html2canvas = await getHtml2Canvas();
+      const saveAs = await getSaveAs();
 
       const canvas = await html2canvas(el, {
         scale: 2,
